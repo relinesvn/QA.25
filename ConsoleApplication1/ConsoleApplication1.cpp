@@ -15,7 +15,8 @@ static float svertka(const float x[], const float w[], int n);
 
 // Parse CLI args: <NN> [--no-file] [--seed=<uint>]
 // If NN is not provided, reads from stdin.
-static bool parse_inputs(int argc, const char* argv[], long& NN, bool& noFile, bool& hasSeed, uint32_t& seed)
+static bool parse_inputs(int argc, char* const argv[], long& NN, bool& noFile, bool& hasSeed, uint32_t& seed)
+
 
 {
     NN = -1;
