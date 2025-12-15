@@ -1,6 +1,4 @@
-﻿// rodion1_updated.cpp
-// Console application for statistical modeling of steam temperature fluctuations
-// (based on the original rodion1.cpp, with improved I/O, validation, and timing)
+﻿// Performance testing instrumentation added-
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
