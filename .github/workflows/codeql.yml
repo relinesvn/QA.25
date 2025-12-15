@@ -4,21 +4,16 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 3 * * 0'   # раз на тиждень
+    - cron: '0 3 * * 0'
 
 jobs:
   analyze:
-    name: Analyze
-    runs-on: ubuntu-latest
+    name: Analyze (cpp)
+    runs-on: windows-latest
     permissions:
       actions: read
       contents: read
       security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'cpp' ]
 
     steps:
       - name: Checkout repository
@@ -27,11 +22,23 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
+          languages: cpp
 
-      # Автозбірка. Для простих C++ проектів часто працює "як є".
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+      # Вмикаємо MSBuild у PATH
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # (Опційно) показати, де лежить .sln, щоб не гадати
+      - name: Locate solution file
+        shell: powershell
+        run: |
+          Get-ChildItem -Recurse -Filter *.sln | ForEach-Object { $_.FullName }
+
+      # ЗБІРКА:
+      - name: Build solution
+        shell: powershell
+        run: |
+          msbuild ".\ConsoleApplication1.sln" /m /p:Configuration=Release /p:Platform=x64
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
