@@ -5,3 +5,4 @@ NN=100000; mpar=-0.030965; sig_tpar=26.894272; startup_ms=0; sim_ms=39; us_per_i
 NN=1000000; mpar=-0.063513; sig_tpar=26.902967; startup_ms=0; sim_ms=428; us_per_iter=0.428; seed=0 (auto)
 NN=1000; mpar=0.367052; sig_tpar=27.448400; startup_ms=0; sim_ms=0; us_per_iter=0.000; seed=0 (auto)
 NN=100000; mpar=-0.038257; sig_tpar=26.953764; startup_ms=0; sim_ms=39; us_per_iter=0.390; seed=0 (auto)
+NN=100000 mpar=0.0135246800 sig_tpar=17.4032379943 time_ms=17.336
